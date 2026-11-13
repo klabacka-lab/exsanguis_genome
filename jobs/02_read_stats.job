@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --job-name=read_stats
+#SBATCH --time=04:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=16G
+#SBATCH --output=/home/alosuna/exsanguis_genome/logs/read_stats_%j.out
+
+source ~/.bashrc
+conda activate assembly
+
+RUN1=/grphome/grp_reptile_genomics/exsanguis_genome/daniel_lizard/m84100_241113_062539_s3.hifi_reads.bc1017.fastq.gz
+RUN2=~/nobackup/autodelete/exsanguis/raw_fastq/m84100_250911_183557_s3.hifi_reads.bc1015.fastq.gz
+
+seqkit stats -a -T -j 8 $RUN1 $RUN2 > ~/exsanguis_genome/results/read_stats.tsv

@@ -1,0 +1,22 @@
+#!/bin/bash
+#SBATCH --job-name=hifiasm
+#SBATCH --time=3-00:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=48
+#SBATCH --mem=500G
+#SBATCH --mail-user=alosuna@byu.edu
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --output=/home/alosuna/exsanguis_genome/logs/hifiasm_%j.out
+
+source ~/.bashrc
+conda activate assembly
+
+RUN1=/grphome/grp_reptile_genomics/exsanguis_genome/daniel_lizard/m84100_241113_062539_s3.hifi_reads.bc1017.fastq.gz
+RUN2=~/nobackup/autodelete/exsanguis/raw_fastq/m84100_250911_183557_s3.hifi_reads.bc1015.fastq.gz
+
+cd ~/nobackup/autodelete/exsanguis/hifiasm
+
+hifiasm -o aexs.asm -t 48 --n-hap 3 $RUN1 $RUN2
+
+awk '/^S/{print ">"$2"\n"$3}' aexs.asm.bp.p_ctg.gfa > aexs.asm.bp.p_ctg.fasta
+awk '/^S/{print ">"$2"\n"$3}' aexs.asm.bp.p_utg.gfa > aexs.asm.bp.p_utg.fasta

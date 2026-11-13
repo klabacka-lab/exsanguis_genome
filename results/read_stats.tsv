@@ -1,0 +1,3 @@
+file	format	type	num_seqs	sum_len	min_len	avg_len	max_len	Q1	Q2	Q3	sum_gap	N50	N50_num	Q20(%)	Q30(%)	AvgQual	GC(%)	sum_n
+/grphome/grp_reptile_genomics/exsanguis_genome/daniel_lizard/m84100_241113_062539_s3.hifi_reads.bc1017.fastq.gz	FASTQ	DNA	6957988	91169949834	54	13102.9	51798	10192	11854	14757	0	12964	2663540	97	94	25.00	42.63	0
+/home/alosuna/nobackup/autodelete/exsanguis/raw_fastq/m84100_250911_183557_s3.hifi_reads.bc1015.fastq.gz	FASTQ	DNA	7368448	59620708993	61	8091.4	75176	4571	6398	9771	0	9357	1998886	98	96	26.61	42.43	0

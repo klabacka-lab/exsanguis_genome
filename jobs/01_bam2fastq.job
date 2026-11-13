@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --job-name=bam2fastq
+#SBATCH --time=06:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=16G
+#SBATCH --output=/home/alosuna/exsanguis_genome/logs/bam2fastq_%j.out
+
+# Convert HiFi reads (BAM) to FASTQ so hifiasm can use them
+
+source ~/.bashrc
+conda activate assembly
+
+IN=/grphome/grp_reptile_genomics/exsanguis_genome/7889/m84100_250911_183557_s3.hifi_reads.bc1015.bam
+OUTDIR=~/nobackup/autodelete/exsanguis/raw_fastq
+mkdir -p $OUTDIR
+
+samtools fastq -@ 8 $IN | gzip > $OUTDIR/m84100_250911_183557_s3.hifi_reads.bc1015.fastq.gz
